@@ -11,12 +11,7 @@ $ python server.py
 
 3. Open browser type URL localhost:5000
 
-4. To access stored results Use creadentials 
-   Username : admin
-   Password : admin
 
-### Demo
-link : https://youtu.be/lD63ZzmgQmg
 
 ![](static/scrn1.png)
 
