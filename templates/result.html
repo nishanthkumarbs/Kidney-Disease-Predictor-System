@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Chronic Kidney Disease Predictor System</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/venobox/venobox.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/aos/aos.css')}}" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+<body>
+        {% block code_block %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="index.html" class="hero-logo" data-aos="zoom-in"></a>
+      {% if result == 0 %}
+      {% if sugar==0 %}  
+      <h1 data-aos="zoom-in">You have severe chronic kidney disease which is at Stage I.</h1>
+      {% elif sugar==1 %}  
+      <h1 data-aos="zoom-in">You have severe chronic kidney disease which is at Stage II.</h1>
+      {% elif sugar==2 %}  
+      <h1 data-aos="zoom-in">You have severe chronic kidney disease which is at Stage III.</h1>
+      {% elif sugar==3 %}  
+      <h1 data-aos="zoom-in">You have severe chronic kidney disease which is at Stage IV.</h1>
+      {% else %}
+      <h1 data-aos="zoom-in">You have severe chronic kidney disease which is at Stage V.</h1>
+      {% endif %}
+        {% else %}
+        <h1 data-aos="zoom-in">You have no signs of Chronic kidney Disease.</h1>
+        {% endif %}
+      
+      <h2 data-aos="fade-up">It’s possible not just to survive, but to thrive and to live a healthy, wonderful life.</h2>
+      <a data-aos="fade-up" href="#about" class="btn-get-started scrollto">Explore</a>
+    </div>
+  </section><!-- End Hero -->
+        {% endblock %}
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+
+      <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+      <div class="logo d-block d-lg-none">
+        <a href="index.html"><img src="{{url_for('static',filename='img/logo.png')}}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#about">Demo</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/login">Image base Predictor</a></li>
+         
+
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+        {% if result == 0 %}
+            <div class="section-title" data-aos="fade-up">
+                    <h2>Care to be taken</h2>
+                  </div>
+          
+                  <div class="row">
+                    <div class="col-lg-6" data-aos="fade-right">
+                      {% if sugar==0 %} 
+                      <img src="{{url_for('static',filename='img/Kidney1.jpg')}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                      <img src="{{url_for('static',filename='img/Kidney1_1.jpg')}}" alt="" class="img-fluid">
+                      {% elif sugar==1 %} 
+                      <img src="{{url_for('static',filename='img/Kidney2.jpg')}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                      <img src="{{url_for('static',filename='img/Kidney2_2.jpg')}}" alt="" class="img-fluid">
+                      {% elif sugar==2 %} 
+                      <img src="{{url_for('static',filename='img/Kidney3.jpg')}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                      <img src="{{url_for('static',filename='img/Kidney3_3.jpg')}}" alt="" class="img-fluid">
+                      {% elif sugar==3 %} 
+                      <img src="{{url_for('static',filename='img/Kidney4.jpg')}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                      <img src="{{url_for('static',filename='img/Kidney4_4.jpg')}}" alt="" class="img-fluid">
+                      {% else %}
+                      <img src="{{url_for('static',filename='img/Kidney5.jpg')}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                      <img src="{{url_for('static',filename='img/Kidney5_5.jpg')}}" alt="" class="img-fluid">
+                     {% endif %}
+                    </div>
+                  </div>
+
+                  {% else %}
+                  <div class="section-title" data-aos="fade-up">
+                    <h2>More Information About CDK</h2>
+                  </div>
+          
+                  <div class="row">
+                    <div class="col-lg-6" data-aos="fade-center">
+                      <iframe width="1050" height="315" src="https://www.youtube.com/embed/c6DgAa0N3ME?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    
+                  </div>
+                  {% endif %} 
+      </div>
+    </section><!-- End About Us Section -->
+
+   
+
+    
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+            <div class="container" data-aos="zoom-in">
+              <div class="quote-icon">
+                <i class="bx bxs-quote-right"></i>
+              </div>
+              <div class="owl-carousel testimonials-carousel">
+      
+                <div class="testimonial-item">
+                  <p>
+                      There's always hope beyond what you see.
+                  </p>
+                </div>
+      
+                <div class="testimonial-item">
+                  <p>
+                      Difficult roads can lead to beautiful destinations.
+                  </p>
+                </div>
+      
+                <div class="testimonial-item">
+                  <p>
+                      Cancer is like a teeter-totter. Sometimes you gotta go down to go back up.
+                  </p>
+                </div>
+      
+                <div class="testimonial-item">
+                  <p>
+                      Don’t pass up the cherry pie.
+                  </p>
+                </div>
+      
+                <div class="testimonial-item">
+                  <p>
+                      Being positive is the best medicine you can take.
+                  </p>
+                </div>
+      
+              </div>
+      
+            </div>
+          </section><!-- End Testimonials Section -->
+
+    
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          
+
+            
+  
+          
+          
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="info d-flex flex-column justify-content-center" data-aos="fade-left">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>Manipall Hospital<br>Mysuru</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>manipal@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+91 123456789</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <a href="#header" class="scrollto footer-logo"><img src="{{url_for('static',filename='img/hero-logo.png')}}" alt=""></a>
+            <h3> Kidney Disease Predictor System</h3>
+          </div>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      
+    </div>
+  </footer><!-- End Footer -->
+
+
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery-sticky/jquery.sticky.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/aos/aos.js')}}"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+</body>
+
+</html>
