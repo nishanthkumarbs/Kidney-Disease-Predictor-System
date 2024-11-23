@@ -13,10 +13,12 @@ $ python app.py
 
 
 
-![](static/scrn1.png)
+![image](https://github.com/user-attachments/assets/1db797bf-0a01-45c5-b1b2-a6b1a422ba49)
 
-![](static/scrn2.png)
+![image](https://github.com/user-attachments/assets/f4da6f79-4907-40e4-836a-b5a9d34690ed)
 
-![](static/scrn3.png)
+![image](https://github.com/user-attachments/assets/4c22b393-f12e-42a4-845c-7708debd571c)
 
-![](static/scrn4.png)
+![image](https://github.com/user-attachments/assets/68774d37-b803-4afe-9027-d261801ec0d9)
+
+![image](https://github.com/user-attachments/assets/e1c84c4a-c811-4989-8454-3be0f3f75b17)
