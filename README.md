@@ -7,7 +7,7 @@ The goal of this project is to develop an automated chronic kidney disease asses
 $ pip install -r requirements.txt
 
 2. To run application
-$ python server.py
+$ python app.py
 
 3. Open browser type URL localhost:5000
 
