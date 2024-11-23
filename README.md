@@ -20,5 +20,3 @@ $ python app.py
 ![](static/scrn3.png)
 
 ![](static/scrn4.png)
-
-![](static/scrn5.png)
