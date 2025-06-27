@@ -43,9 +43,9 @@ app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'kidneymedicare0@gmail.com'  # Replace with your email
-app.config['MAIL_PASSWORD'] = 'vfrprssooabsdctl'  # Replace with your password
-app.config['MAIL_DEFAULT_SENDER'] = 'kidneymedicare0@gmail.com'
+app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
+app.config['MAIL_PASSWORD'] = 'your_app_password'
+app.config['MAIL_DEFAULT_SENDER'] = 'your_email@gmail.com'
 
 mail = Mail(app)
 app.secret_key = os.urandom(12)

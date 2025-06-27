@@ -1,0 +1,34 @@
+# === Flask Core ===
+Flask==2.3.3
+Flask-Mail==0.9.1
+Flask-SQLAlchemy==3.1.1
+
+# === Machine Learning ===
+scikit-learn==1.2.2
+pandas==2.0.1
+numpy==1.24.3
+
+# === Image Processing ===
+opencv-python==4.7.0.72
+scikit-image==0.20.0
+matplotlib==3.7.1
+
+# === Voice Assistant ===
+pyttsx3==2.90
+SpeechRecognition==3.10.0
+pyaudio==0.2.13
+requests==2.31.0
+
+# === PDF Generation ===
+xhtml2pdf==0.2.10
+reportlab==3.6.12
+
+# === Email Handling (Optional for SMTP / Parsing) ===
+email-validator==1.3.1
+smtplib3==1.0.4
+
+# === Web Scraping / Misc (Optional) ===
+beautifulsoup4==4.12.2
+
+# === Plotting and Animation ===
+Pillow==9.5.0  # Required for saving animations (GIFs) using PillowWriter
