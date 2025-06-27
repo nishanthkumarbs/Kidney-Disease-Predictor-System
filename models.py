@@ -17,7 +17,6 @@ class Model:
         path = 'dataset/kidney_disease.csv'
         df = pd.read_csv(path)
         df = df[['age', 'bp', 'su', 'pc', 'pcc', 'sod', 'hemo', 'htn', 'dm', 'classification']]
-
         df['age'] = df['age'].fillna(df['age'].mean())
         df['bp'] = df['bp'].fillna(df['bp'].mean())
         df['su'] = df['su'].fillna(df['su'].mode()[0])

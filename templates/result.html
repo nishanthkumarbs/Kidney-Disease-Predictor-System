@@ -52,7 +52,97 @@
       <a data-aos="fade-up" href="#about" class="btn-get-started scrollto">Explore</a>
     </div>
   </section><!-- End Hero -->
-        {% endblock %}
+
+
+  <section id="graph-section" class="graph-section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Prediction Analysis Graph</h2>
+      </div>
+  
+      <!-- Start Button -->
+      <div class="text-center mb-4">
+        <button id="startAnalysis" class="btn btn-primary">Start Prediction Analysis</button>
+      </div>
+  
+      <div class="row align-items-center">
+        <!-- Left Column: Graph -->
+        <div class="col-lg-8">
+          <img id="graphImage" src="{{ graph_url }}" alt="Prediction Analysis Graph" class="img-fluid" style="display: none; opacity: 0; transition: opacity 2s ease;">
+        </div>
+  
+        <!-- Right Column: Normal Values -->
+        <div class="col-lg-4">
+          <h3>Normal Values for Reference:</h3>
+          <ul>
+            <li><strong>Blood Pressure (BP):</strong> 90/60 mmHg to 120/80 mmHg (normal).</li>
+            <li><strong>Blood Sugar (Fasting):</strong> 70–99 mg/dL.</li>
+            <li><strong>Blood Sugar (Postprandial):</strong> &lt;140 mg/dL.</li>
+            <li><strong>Blood Sugar (Random):</strong> &lt;200 mg/dL (non-diabetic).</li>
+            <li><strong>Pus Cells (PC):</strong> 0–5 cells per HPF.</li>
+            <li><strong>Sodium (Sod):</strong> 135–145 mEq/L.</li>
+            <li><strong>Hemoglobin (Hemo):</strong> 
+              <ul>
+                <li>Men: 13.8–17.2 g/dL.</li>
+                <li>Women: 12.1–15.1 g/dL.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Hidden Stage Result -->
+  <p id="stage-result" style="display: none;">{{ stage }}</p>
+  
+  <!-- Audio -->
+  <audio id="alertSound" src="{{ url_for('static', filename='audio/alert.mp3') }}" loop></audio>
+  
+  <script>
+    document.getElementById("startAnalysis").addEventListener("click", function () {
+      const alertSound = document.getElementById("alertSound");
+      const graphImage = document.getElementById("graphImage");
+  
+      const FADE_IN_DELAY = 100;         // Delay before starting fade-in
+      const SOUND_START_DELAY = 2000;    // Delay after image shows before playing sound
+      const SOUND_DURATION_MS = 10000;   // ✅ Duration to play sound (in ms, e.g. 10s = 10000)
+  
+      // Step 1: Fade-in graph image
+      graphImage.style.display = "block";
+      setTimeout(() => {
+        graphImage.style.opacity = 1;
+      }, FADE_IN_DELAY);
+  
+      // Step 2: Wait for image to fully load
+      const handleAfterImageLoad = () => {
+        setTimeout(() => {
+          // Step 3: Start sound
+          alertSound.play().catch(err => {
+            console.error("Sound play blocked by browser:", err);
+          });
+  
+          // Step 4: Stop sound after defined duration
+          setTimeout(() => {
+            alertSound.pause();
+            alertSound.currentTime = 0;
+          }, SOUND_DURATION_MS);
+  
+        }, SOUND_START_DELAY);
+      };
+  
+      // If already loaded (from cache), trigger directly
+      if (graphImage.complete && graphImage.naturalHeight !== 0) {
+        handleAfterImageLoad();
+      } else {
+        graphImage.onload = handleAfterImageLoad;
+      }
+    });
+  </script>
+  
+  {% endblock %}
+
+
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container">
@@ -62,15 +152,24 @@
         <a href="index.html"><img src="{{url_for('static',filename='img/logo.png')}}" alt="" class="img-fluid"></a>
       </div>
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul class="nav-inner">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="#about">Demo</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="/login">Image base Predictor</a></li>
-         
-
-
+      <nav class="nav-menu d-none d-lg-block" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <ul class="nav-inner stylish-nav">
+          <li class="active"><a href="/" class="nav-btn"><i class="bx bx-home"></i>Home</a></li>
+          <li><a href="#about" class="nav-btn"><i class="bx bx-info-circle"></i>Demo</a></li>
+          <li><a href="#contact" class="nav-btn"><i class="bx bx-phone"></i>Contact</a></li>
+          <li><a href="/image" class="nav-btn"><i class="bx bx-pulse"></i>Img Predictor</a></li>
+          <div>
+            <button id="theme-toggle" class="round-toggle-btn">
+              <i class="bx bx-moon"></i> <!-- Default icon -->
+            </button>
+          </div>
+          <li>
+            <div >
+              <a href="{{ url_for('download_pdf') }}" class="btn-style" style="position: absolute; right: 10px; top: 8px;">
+                <i class="bx bx-download"></i>Download PDF
+              </a>
+          </div>
+          </li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -132,10 +231,6 @@
                   {% endif %} 
       </div>
     </section><!-- End About Us Section -->
-
-   
-
-    
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
             <div class="container" data-aos="zoom-in">
@@ -178,55 +273,46 @@
       
             </div>
           </section><!-- End Testimonials Section -->
-
-    
-
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
       <div class="container">
-
         <div class="section-title">
           <h2>Contact</h2>
-          
-
-            
-  
-          
-          
         </div>
-
+    
         <div class="row">
-
+    
           <div class="col-lg-4">
-            <div class="info d-flex flex-column justify-content-center" data-aos="fade-left">
-              <div class="address">
+            <div class="info d-flex flex-column justify-content-center" data-aos="fade-center">
+              <div class="address box">
                 <i class="icofont-google-map"></i>
                 <h4>Location:</h4>
                 <p>Manipall Hospital<br>Mysuru</p>
               </div>
-
-              <div class="email">
+    
+              <div class="email box">
                 <i class="icofont-envelope"></i>
                 <h4>Email:</h4>
-                <p>manipal@gmail.com</p>
+                <p>manipall@gmail.com</p>
               </div>
-
-              <div class="phone">
+    
+              <div class="phone box">
                 <i class="icofont-phone"></i>
                 <h4>Call:</h4>
                 <p>+91 123456789</p>
               </div>
-
             </div>
-
           </div>
-
-          
-
+    
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <!-- You can add content here like a contact form -->
+          </div>
+    
         </div>
-
+    
       </div>
-    </section><!-- End Contact Section -->
+    </section>
+    <!-- End Contact Section -->
 
   </main><!-- End #main -->
 
@@ -272,7 +358,81 @@
 
   <!-- Template Main JS File -->
   <script src="{{url_for('static',filename='js/main.js')}}"></script>
+  <script>
+    window.onload = function () {
+      const username = "{{ session.get('user', 'User') }}";
+      const stageIndex = "{{ sugar }}";
+      const resultCode = "{{ result }}";
+  
+      const stages = {
+        0: "You have severe chronic kidney disease which is at Stage I.",
+        1: "You have severe chronic kidney disease which is at Stage II.",
+        2: "You have severe chronic kidney disease which is at Stage III.",
+        3: "You have severe chronic kidney disease which is at Stage IV.",
+        4: "You have severe chronic kidney disease which is at Stage V."
+      };
+  
+      let message = "";
+  
+      if (resultCode == 0) {
+        message = `Hello ${username}, your prediction result is: ${stages[stageIndex]}`;
+      } else {
+        message = `Hello ${username}, you have no signs of Chronic Kidney Disease.`;
+      }
+  
+      const utter = new SpeechSynthesisUtterance(message);
+      window.speechSynthesis.speak(utter);
+  
+      // 📧 Second part: Email announcement
+      const emailMessage = `Hello ${username}, your prediction result is sent to your email.`;
+      const emailUtter = new SpeechSynthesisUtterance(emailMessage);
+      window.speechSynthesis.speak(emailUtter);
+    };
+  </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      body.classList.add(savedTheme);
+      toggleButton.innerHTML = savedTheme === "dark-mode" 
+        ? '<i class="bx bx-sun"></i>' // Sun icon for light mode
+        : '<i class="bx bx-moon"></i>'; // Moon icon for dark mode
+    }
+
+    // Toggle theme on button click
+    toggleButton.addEventListener("click", () => {
+      if (body.classList.contains("dark-mode")) {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light-mode");
+        toggleButton.innerHTML = '<i class="bx bx-moon"></i>'; // Moon icon for dark mode
+      } else {
+        body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark-mode");
+        toggleButton.innerHTML = '<i class="bx bx-sun"></i>'; // Sun icon for light mode
+      }
+    });
+  });
+</script>
+
+<audio id="alertSound" src="{{ url_for('static', filename='audio/drill.mp3') }}" preload="auto"></audio>
+<button onclick="playAlert()">Check Stage</button>
+<script>
+  function playAlert() {
+    const stage = document.getElementById("stage-result").innerText;
+    const alertSound = document.getElementById("alertSound");
+
+    if (stage.includes("Stage 4") || stage.includes("Stage 5")) {
+      alertSound.play().catch(err => {
+        console.log("Audio play failed:", err);
+      });
+    }
+  }
+</script>
 </body>
 
 </html>

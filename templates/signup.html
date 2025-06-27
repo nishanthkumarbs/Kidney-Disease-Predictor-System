@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Kidney Disease Predictor</title>
+    <title>Signup | Kidney Disease Predictor</title>
 
-    <!-- CSS File -->
+    <!-- Link to CSS File -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
+    
     <style>
         /* General Styling */
         body {
@@ -22,7 +22,7 @@
             margin: 0;
         }
 
-        /* Centered Login Container */
+        /* Centered Signup Container */
         .container {
             width: 100%;
             max-width: 400px;
@@ -58,7 +58,7 @@
 
         /* Button */
         .btn {
-            background: #007bff;
+            background: #28a745;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -70,17 +70,17 @@
         }
 
         .btn:hover {
-            background: #0056b3;
+            background: #218838;
         }
 
-        /* Signup Link */
+        /* Login Link */
         p {
             margin-top: 10px;
             font-size: 14px;
         }
 
         a {
-            color: #007bff;
+            color: #28a745;
             text-decoration: none;
         }
 
@@ -99,7 +99,6 @@
             text-align: center;
             width: 100%;
         }
-
         /* Round Dark Mode Toggle Button */
 .round-toggle-btn {
     width: 50px;
@@ -158,7 +157,7 @@
 </head>
 <body>
     <div class="container">
-      <h2>Login</h2>
+      <h2>Signup</h2>
   
       <!-- Flash Messages -->
       {% with messages = get_flashed_messages() %}
@@ -167,24 +166,25 @@
         {% endif %}
       {% endwith %}
   
-      <!-- Login Form -->
-      <form action="{{ url_for('login') }}" method="POST">
-        <input type="text" name="username" placeholder="Enter Username" required>
-        <input type="email" name="email" placeholder="Enter Email" required>
-        <input type="password" name="password" placeholder="Enter Password" required>
-        <button type="submit" class="btn">Login</button>
-      </form>
+      <!-- Signup Form -->
+<form action="{{ url_for('signup') }}" method="POST">
+  <input type="text" name="username" placeholder="Enter Username" required>
+  <input type="email" name="email" placeholder="Enter Email" required>
+  <input type="password" name="password" placeholder="Enter Password" required>
+  <input type="tel" name="whatsapp_number" placeholder="Enter WhatsApp Number (e.g. +911234567890)" pattern="^\+\d{10,15}$" required>
+  <button type="submit" class="btn">Signup</button>
+</form>
   
-      <!-- 🔊 Voice Login Button -->
-      <button onclick="voiceLogin()" class="btn">🔊 Voice Login</button>
+      <!-- 🔊 Voice Register Button -->
+      <button onclick="voiceRegister()" class="btn">🔊 Voice Register</button>
   
-      <p>Don't have an account? <a href="{{ url_for('signup') }}">Signup here</a></p>
+      <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
     </div>
   
     <!-- Add script at the end of body -->
     <script>
-      function voiceLogin() {
-        fetch("/start-voice-login");
+      function voiceRegister() {
+        fetch("/start-voice-register");
       }
     </script>
 
@@ -218,4 +218,3 @@
 </script>
   </body>
   </html>
-  

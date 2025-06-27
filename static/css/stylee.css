@@ -1,0 +1,252 @@
+/* General Theme Colors */
+:root {
+    --primary-blue: #4da8da; /* Light Blue */
+    --hover-blue: #3a91c4; /* Darker Blue */
+    --active-blue: #337fab; /* Even Darker Blue */
+    --text-white: #ffffff; /* White */
+    --shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow Effect */
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: var(--primary-blue) !important;
+    border-bottom: 3px solid var(--hover-blue);
+    border-radius: 50px;
+    margin: 10px auto;
+    width: 90%;
+    padding: 10px 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Center Navbar Content */
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--text-white) !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Navbar Links */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar-nav .nav-item a {
+    color: var(--text-white) !important;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Navbar Link Hover Effect */
+.navbar-nav .nav-item a:hover {
+    background: var(--hover-blue) !important;
+    border-radius: 10px;
+    transform: scale(1.1);
+    box-shadow: var(--shadow);
+}
+
+/* Styling for the Upload Section */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h3 {
+    font-weight: bold;
+    text-align: center;
+    color: var(--hover-blue);
+}
+
+/* Card Styling */
+.card {
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Upload Image Styling */
+.image-upload label {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+    background-color: #d9f2ff;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Upload Image Hover Effect */
+.image-upload label:hover img {
+    transform: scale(1.1);
+}
+
+/* Hide File Input */
+.image-upload input {
+    display: none;
+}
+
+/* Upload Button */
+.btn-success {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: var(--text-white);
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Upload Button Hover */
+.btn-success:hover {
+    background-color: var(--hover-blue);
+    border-color: var(--hover-blue);
+    transform: scale(1.05);
+}
+
+/* Upload Button Click Effect */
+.btn-success:active {
+    background-color: var(--active-blue) !important;
+    border-color: var(--active-blue) !important;
+    transform: scale(0.95);
+}
+
+/* Result Display */
+#result {
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    box-shadow: var(--shadow);
+}
+
+#result img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+#result label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--hover-blue);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .navbar {
+        width: 95%;
+        border-radius: 30px;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-success {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+}
+.col-md-12 label {
+    color: #4da8da !important; /* Light Blue */
+}
+
+/* result sugar image0 */
+.image-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically (if needed) */
+}
+
+.kidney-image {
+    max-width: 100%; /* Makes image responsive */
+    height: auto;
+}
+
+
+/* Round Dark Mode Toggle Button */
+.round-toggle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007BFF, #0056b3); /* Sleek blue gradient */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .round-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  body.dark-mode .round-toggle-btn {
+    background: linear-gradient(135deg, #333333, #121212); /* Dark mode gradient */
+    color: #f1c40f; /* Yellow icon for dark mode */
+  }
+
+
+    /* Default Light Mode */
+    body {
+        background-color: #ffffff;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+      }
+    
+      /* Dark Mode */
+      body.dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+      }
+    
+      /* Adjust other elements for dark mode */
+      body.dark-mode .btn {
+        background-color: #333333;
+        color: #ffffff;
+      }
+    
+      body.dark-mode a {
+        color: #90caf9;
+      }
+    
+      body.dark-mode .nav-menu {
+        background-color: #1e1e1e;
+      }

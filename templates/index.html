@@ -1,72 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Kidney Disease Predictor System</title>
 
-  <title> Kidney Disease Predictor System</title>
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat|Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    
 
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/icofont/icofont.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{url_for('static',filename='vendor/icofont/icofont.min.css')}}" rel="stylesheet">
-  <link href="{{url_for('static',filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{url_for('static',filename='vendor/venobox/venobox.css')}}" rel="stylesheet">
-  <link href="{{url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-  <link href="{{url_for('static',filename='vendor/aos/aos.css')}}" rel="stylesheet">
-  
-  <!-- Template Main CSS File -->
-  <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
-
+    <!-- Main CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 30px;
+      color: #0056b3;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 
+<!-- ✅ Chatbot JavaScript -->
+<script>
+  (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="55-Pk3zF62mhmCN9EmnDG";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  </script>
+  <!-- Floating Voice Assistant Button -->
+<!-- <button id="voiceBtn" onclick="startVoice()" title="Click to speak">🎤 Start Assistant</button> -->
+
+
+<style>
+
+#voice-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #007BFF, #0056b3); /* Sleek Blue */
+  border: none;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+#voice-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
+}
+</style>
+
+<script>
+  async function startVoice() {
+    try {
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      console.log("Microphone access granted.");
+
+      fetch('/start_voice')
+        .then(response => {
+          if (response.ok) {
+            console.log("Voice assistant activated.");
+          } else {
+            console.error("Failed to activate voice assistant.");
+          }
+        });
+    } catch (err) {
+      alert("Microphone access denied or not available.");
+      console.error("Mic permission error:", err);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const voiceBtn = document.getElementById("voice-btn");
+    if (voiceBtn) {
+      voiceBtn.addEventListener("click", startVoice);
+    }
+  });
+</script>
+
+
+
+
 <body>
-
-  <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div class="hero-container">
-      <a href="index.html" class="hero-logo" data-aos="zoom-in"></a>
-      
-      <h1 data-aos="zoom-in"><b>Welcome To  Kidney Disease Predictor System</b></h1>
-      <h2 data-aos="fade-up"><b> possible not just to survive, but to thrive and to live a healthy, wonderful life again.</b></h2>
-      <a data-aos="fade-up" href="#about" class="btn-get-started scrollto">Get Started</a>
-    </div>
-  </section><!-- End Hero -->
+    <!-- Scrolling Image Section -->
+    <!-- <button class="scroll-btn left-btn" onclick="startScroll(-1)">❮</button> -->
+    <div class="scroll-container">
+        <!-- <div class="scroll-text">
+            <!-- Duplicated images for smooth looping -->
+               <!-- Duplicate images for looping effect -->
+         <!--     <img src="{{ url_for('static', filename='img/img1.jpg') }}" alt="Image 1">
+            <img src="{{ url_for('static', filename='img/img2.jpg') }}" alt="Image 2">
+            <img src="{{ url_for('static', filename='img/img3.jpg') }}" alt="Image 3">
+            <img src="{{ url_for('static', filename='img/img4.jpg') }}" alt="Image 4">
+            <img src="{{ url_for('static', filename='img/img5.jpg') }}" alt="Image 5">-->
+            <!-- Duplicate images for looping effect -->
+         <!--    <img src="{{ url_for('static', filename='img/img1.jpg') }}" alt="Image 1">
+            <img src="{{ url_for('static', filename='img/img2.jpg') }}" alt="Image 2">
+            <img src="{{ url_for('static', filename='img/img3.jpg') }}" alt="Image 3">
+            <img src="{{ url_for('static', filename='img/img4.jpg') }}" alt="Image 4">
+            <img src="{{ url_for('static', filename='img/img5.jpg') }}" alt="Image 5">
+        </div>-->
+    </div> 
+    <!-- <button class="scroll-btn right-btn" onclick="startScroll(1)">❯</button> -->
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container">
+    <!-- Existing Hero Content -->
+    <div class="hero-content">
+        <h1>Welcome To Kidney Disease Predictor System</h1>
+        <p>Possible not just to survive, but to thrive and to live a healthy, wonderful life again.</p>
+        <a href="#about" class="btn">Get Started</a>
+    </div>
+</section>
+    <!-- About Section -->
+ 
+    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
       <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
       <div class="logo d-block d-lg-none">
         <a href="index.html"><img src="{{url_for('static',filename='img/logo.png')}}" alt="" class="img-fluid"></a>
       </div>
+      <nav class="nav-menu d-none d-lg-block" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <ul class="nav-inner stylish-nav">
+          <li><a href="/" class="nav-btn"><i class="bx bx-home"></i> Home</a></li>
+          <li><a href="#about" class="nav-btn"><i class="bx bx-info-circle"></i> Demo</a></li>
+          <li><a href="#services" class="nav-btn"><i class="bx bx-pulse"></i> CKD Prediction</a></li>
+          <li><a href="#contact" class="nav-btn"><i class="bx bx-phone"></i> Contact</a></li>
+          <li><a href="/image" class="nav-btn"><i class="bx bx-image"></i> Img Prediction</a></li>
+          <div >
+            <button id="theme-toggle" class="round-toggle-btn">
+              <i class="bx bx-moon"></i> <!-- Default icon -->
+            </button>
+          </div>
+          
+      </ul>
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul class="nav-inner">
-          <li class="active"><a href="/ ">Home</a></li>
-          <li><a href="#about">Demo</a></li>
-          <li><a href="#services">CKD prediction</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="/login">Image based prediction</a></li>
-         
-
-
-        </ul>
-      </nav><!-- .nav-menu -->
-
+        <!-- Left Corner: Show "Login" if NOT logged in -->
+        {% if not username %}
+        <div style="position: absolute; right: 20px; top: 10px; display: flex; align-items: center; gap: 10px;">
+  
+          <!-- Login Button -->
+          <a href="{{ url_for('login') }}" class="btn-style"><i class="bx bx-log-in"></i>
+            Login</a>
+        
+          <!-- Sign Up Button -->
+          <a href="{{ url_for('signup') }}" class="btn-style"><i class="bx bx-user-plus"></i>
+            Sign Up</a>
+        
+        </div>
+{% endif %}
+        <!-- Left Corner: Show "Welcome, username" if logged in -->
+        {% if username %}
+            <span class="btn btn-success" style="position: absolute; left: 10px; top: 8px;">
+                Welcome, {{ username }}
+            </span>
+        {% endif %}
+    
+        <!-- Right Corner: Show "Logout" if logged in -->
+        {% if username %}
+            <a href="{{ url_for('logout') }}" class="btn btn-danger" style="position: absolute; right: 10px; top: 8px;">
+              <i class="bx bx-log-out"></i>
+              Logout
+            </a>
+        {% endif %}
+    </nav>
     </div>
   </header><!-- End Header -->
 
-  <main id="main">
-
     <!-- ======= About Us Section ======= -->
+
+  <main id="main">
     <section id="about" class="about">
       <div class="container">
 
@@ -74,7 +195,6 @@
           <h2>Demo</h2>
           <p>An application to test  Kidney Disease.</p>
         </div>
-
         <div class="row">
           <div class="col-lg-6" data-aos="fade-right">
             <div class="image">
@@ -95,7 +215,6 @@
                 where we can find the most relevant information about how to be better at our jobs. 
                 If we are not delivering effectively to the patients how can we ever expect better satisfaction hopefully.
               </p>
-
               <a href="#services"><input class="btn btn-success" type="button" value="Take a Test"></a>
 
             </div>
@@ -104,6 +223,7 @@
 
       </div>
     </section><!-- End About Us Section -->
+    <hr class="section-divider">
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
@@ -120,29 +240,30 @@
               
               
             <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
-              <i class="bx bx-receipt"></i>
+              <i class="bx bx-user"></i>
               <h4>Age</h4>
               <div class="form-group">
                     <input required type="number" name="age" class="form-control">
             </div>
             </div>
             <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-receipt"></i>
+              <i class="bx bx-pulse"></i>
               <h4>Blood Pressure</h4>
               <div class="form-group">
                     <input required type="number" name="bp" class="form-control">  
             </div>
             </div>
             <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-receipt"></i>
+              <i class="bx bx-capsule"></i>
               <h4>Sugar(nominal)</h4>
               <div class="form-group">
                     <select required name="sugar" class="form-control">
-                            <option value="0">0</option>
+                            <option value="0">0 (Normal)</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
               </div>
             </div>
@@ -173,7 +294,7 @@
              
 
                 <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
-                    <i class="bx bx-receipt"></i>
+                  <i class="bx bx-receipt"></i>
                             <h4>Sodium(mEq/L)</h4>
                             <div class="form-group">
                                     <input required type="number" name="sodium" class="form-control">
@@ -182,14 +303,15 @@
 
 
               <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
-                <i class="bx bx-receipt"></i>
+                <i class="bx bx-droplet"></i>
                 <h4>Hemoglobin(gms)</h4>
                 <div class="form-group">
                         <input required type="any" name="hemo" class="form-control">
                 </div>
               </div>
               <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="100">
-                <i class="bx bx-receipt"></i>
+                <i class="bx bx-error-circle"></i>
+
                 <h4>Hypertension</h4>
                 <div class="form-group">
                         <select required name="htn" class="form-control">
@@ -209,7 +331,7 @@
                 </div>
               </div>
               <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
-                <i class="bx bx-receipt"></i>
+                <i class="bx bx-droplet"></i>
                 <h4>RBC</h4>
                 <div class="form-group">
                   <select required name="pc" class="form-control">
@@ -227,96 +349,49 @@
       </div>
     </section><!-- End Services Section -->
 
-    
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
-        <div class="quote-icon">
-          <i class="bx bxs-quote-right"></i>
-        </div>
-        <div class="owl-carousel testimonials-carousel">
 
-          <div class="testimonial-item">
-            <p>
-                There's always hope beyond what you see.
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-                Difficult roads can lead to beautiful destinations.
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-                CDK is like a teeter-totter. Sometimes you gotta go down to go back up.
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-                Don’t pass up the cherry pie.
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <p>
-                Being positive is the best medicine you can take.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-    
+    <hr class="section-divider">
+  
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
       <div class="container">
-
         <div class="section-title">
-          <h2>Contact</h2
+          <h2>Contact</h2>
         </div>
-
+    
         <div class="row">
-
           <div class="col-lg-4">
             <div class="info d-flex flex-column justify-content-center" data-aos="fade-center">
-              <div class="address">
+              <div class="address box">
                 <i class="icofont-google-map"></i>
                 <h4>Location:</h4>
                 <p>Manipall Hospital<br>Mysuru</p>
               </div>
-
-              <div class="email">
+    
+              <div class="email box">
                 <i class="icofont-envelope"></i>
                 <h4>Email:</h4>
                 <p>manipall@gmail.com</p>
               </div>
-
-              <div class="phone">
+    
+              <div class="phone box">
                 <i class="icofont-phone"></i>
                 <h4>Call:</h4>
                 <p>+91 123456789</p>
               </div>
-
             </div>
-
           </div>
-
+    
           <div class="col-lg-8 mt-5 mt-lg-0">
-
-            
-
+            <!-- You can add content here like a contact form -->
           </div>
-
+    
         </div>
-
       </div>
-    </section><!-- End Contact Section -->
+    </section>
+    
+    <!-- End Contact Section -->
 
   </main><!-- End #main -->
 
@@ -363,6 +438,44 @@
   <!-- Template Main JS File -->
   <script src="{{url_for('static',filename='js/main.js')}}"></script>
 
+  <!-- Elegant Floating Voice Button -->
+<button id="voice-btn" title="Start Voice Assistant">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+    <path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/>
+    <path d="M19 11h-1.5a5.5 5.5 0 0 1-11 0H5a7 7 0 0 0 14 0zM10.75 20h2.5v2h-2.5z"/>
+  </svg>
+</button>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      body.classList.add(savedTheme);
+      toggleButton.innerHTML = savedTheme === "dark-mode" 
+        ? '<i class="bx bx-sun"></i>' // Sun icon for light mode
+        : '<i class="bx bx-moon"></i>'; // Moon icon for dark mode
+    }
+
+    // Toggle theme on button click
+    toggleButton.addEventListener("click", () => {
+      if (body.classList.contains("dark-mode")) {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light-mode");
+        toggleButton.innerHTML = '<i class="bx bx-moon"></i>'; // Moon icon for dark mode
+      } else {
+        body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark-mode");
+        toggleButton.innerHTML = '<i class="bx bx-sun"></i>'; // Sun icon for light mode
+      }
+    });
+  });
+</script>
 </body>
 
 </html>

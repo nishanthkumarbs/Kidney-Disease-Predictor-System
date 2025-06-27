@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kidney Function Test Report</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      font-family: 'Poppins', sans-serif;
+      background: #e8f0fc;
+      margin: 0;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+    .container-custom {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+      border-top: 8px solid #0056b3;
+    }
+
+    .header {
+      background: linear-gradient(to right, #0d47a1, #1976d2);
+      color: #fff;
+      padding: 20px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+    }
+
+    .header-text {
+      flex: 1;
+    }
+
+    .header-text h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .header-text p {
+      font-size: 25px;
+      margin: 4px 0;
+      padding-right: 10px;
+    }
+
+    .header-text h2 {
+      font-size: 24px;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #dceeff;
+    }
+
+    .patient-info {
+      background: #eef3f9;
+      border-left: 5px solid #0056b3;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+
+    .alert {
+      background: #fdecea;
+      color: #b71c1c;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+      border: 1px solid #f5c6cb;
+      font-size: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: 15px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #0056b3;
+      color: white;
+    }
+
+    table td {
+      font-weight: bold;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    h3.section-title {
+      color: #0056b3;
+      margin-top: 30px;
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #alerth3 {
+      margin-top: 10px;
+      font-size: 22px;
+    }
+
+    .health-advice {
+      background-color: #e0f7e9;
+      padding: 15px;
+      border-left: 5px solid #28a745;
+      border-radius: 8px;
+      font-size: 15px;
+      margin-top: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 1em;
+      color: #ffffff;
+      margin-top: 30px;
+      padding: 20px;
+      background: linear-gradient(90deg, #0d47a1, #1976d2);
+      border-radius: 0 0 15px 15px;
+      font-weight: bold;
+    }
+
+    .progress-container {
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f4a000;
+    }
+
+    .progress-bar-custom {
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      border-radius: 10px;
+      transition: width 0.5s ease-in-out;
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container-custom">
+  <div class="header">
+    <img class="logo" src="https://img.freepik.com/free-vector/hospital-logo-design-vector-medical-cross_53876-136743.jpg?semt=ais_hybrid&w=740" alt="Manipal Hospital Logo Left">
+
+    <div class="header-text">
+      <h1>Manipal Hospital, Mysore</h1>
+      <p>Email: <a href="mailto:manipalhospitalmysore@example.com" style="color:#bbdefb">manipalhospitalmysore@example.com</a>  Phone: ‪+91 9876543210‬</p>
+      <h2>KIDNEY FUNCTION TEST REPORT</h2>
+    </div>
+
+    <img class="logo" src="https://www.clipartmax.com/png/full/156-1563967_4-month-old-charvik-needs-surgery-for-a-hole-in-his-manipal.png" alt="Manipal Hospital Logo Right">
+  </div>
+
+  <div class="patient-info">
+    <p><strong>Patient Name:</strong> {{ patient_name }}</p>
+    <p><strong>Age:</strong> {{ values[0] }}</p>
+    <p><strong>Date:</strong> {{ date }}</p>
+  </div>
+
+  <div class="alert">
+    <h1 id="alerth3">Prediction Result</h1>
+    <p class="fs-4 fw-bold">{{ result_text }}</p>
+    <div class="progress-container">
+      <div class="progress-bar-custom"
+        style="width: {{ progress_percentage }}%; 
+              background-color: 
+              {% if progress_percentage <= 20 %} #28a745;
+              {% elif progress_percentage <= 40 %} #ffc107;
+              {% elif progress_percentage <= 60 %} #fd7e14;
+              {% elif progress_percentage <= 80 %} #dc3545;
+              {% else %} #6c757d;
+              {% endif %};">
+        {{ stage_name }} {{ progress_percentage }}%
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-title">Test Features & Values</h3>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Value</th>
+          <th>Normal Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Blood Pressure (BP)</td><td>{{ values[1] }} mmHg</td><td>90/60 to 120/80 mmHg</td></tr>
+        <tr><td>Blood Sugar</td><td>{{ values[2] }} mg/dL</td><td>&lt;140 mg/dL</td></tr>
+        <tr><td>Pus Cells (PC)</td><td>{{ values[4] }} cells/HPF</td><td>0–5 cells per HPF</td></tr>
+        <tr><td>Sodium (Sod)</td><td>{{ values[5] }} mEq/L</td><td>135–145 mEq/L</td></tr>
+        <tr><td>Hemoglobin (Hemo)</td><td>{{ values[6] }} g/dL</td><td>Men: 13.8–17.2 g/dL<br>Women: 12.1–15.1 g/dL</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Health Advice</h3>
+  <div class="health-advice">
+    Maintain a balanced diet, monitor blood pressure regularly, stay hydrated, and avoid excessive salt intake. Regular check-ups are recommended.
+  </div>
+
+  <p class="footer"><br>
+    Regards,<br>
+    <strong>Manipal Hospital, Mysore</strong><br>
+    Email: <a href="mailto:manipalhospitalmysore" style="color: #bbdefb;">manipalhospitalmysore@example.com</a><br>
+    Phone: +91 9876543210
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
