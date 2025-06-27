@@ -139,3 +139,7 @@ This project is for educational and prototyping purposes. It is **not** intended
 * UCI Machine Learning Repository for the dataset
 * OpenCV & scikit-learn for enabling powerful ML + image processing
 * Flask & the Python community 👍
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE) © 2025 Nishanth Kumar B S.
